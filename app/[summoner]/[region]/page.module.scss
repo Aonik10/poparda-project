@@ -1,0 +1,36 @@
+.layout {
+    background-image: url("../../../assets/bg1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.summoner_match {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+.match_info {
+    width: 900px;
+}
+
+.general_info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: 20px 0;
+    height: 60px;
+}
+
+.summoner_cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vs {
+    width: 100%;
+    text-align: center;
+    color: white;
+}

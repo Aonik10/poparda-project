@@ -1,0 +1,28 @@
+@import "../../app/variables.scss";
+
+.banned_container {
+    display: flex;
+    justify-content: space-between;
+    min-width: 330px;
+}
+
+.team_title {
+    text-align: center;
+}
+
+.blue_team {
+    color: $primary-blue
+}
+
+.red_team {
+    color: $primary-red
+}
+
+.banned_team_container {
+    img {
+        width: 30px;
+        height: 30px;
+        margin: 5px 1px 0 0;
+    }
+}
+    

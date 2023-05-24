@@ -1,0 +1,16 @@
+.region_fragment {
+    padding: 8px;
+    background-color: blue;
+    width: 38px;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    margin: 1px;
+
+    &:hover {
+        background-color: lightblue;
+        color: red
+    }
+}
