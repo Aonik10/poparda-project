@@ -1,5 +1,8 @@
+"use client";
+
 import { Champion, Player } from "@/utils/interfaces";
 import styles from "./styles/summonerCard.module.scss";
+import { useState } from "react";
 
 interface SummonerCardProps {
     player: {
@@ -11,6 +14,8 @@ interface SummonerCardProps {
 }
 
 function SummonerCard({ player }: SummonerCardProps) {
+    const [active, setActive] = useState(false);
+
     function capitalizeName(name: string) {
         const firstLetter = name.substring(0, 1);
         const nextLetters = name.substring(1).toLowerCase();
@@ -28,17 +33,38 @@ function SummonerCard({ player }: SummonerCardProps) {
     }
 
     return (
-        <div className={styles.summoner_card}>
-            <div className={styles.player_name}>{player.data.summonerName}</div>
-            <div className={styles.card_body} style={{ backgroundImage: setBackgroundImage(player.champion.name) }}>
-                <div></div>
+        <div
+            className={`${styles.summoner_card} ${styles.flip_card} ${
+                active ? styles.flip_card_active : styles.flip_card_inactive
+            }`}
+            onClick={() => setActive(!active)}
+        >
+            <div className={styles.flip_card_inner}>
+                <div className={styles.flip_card_front}>
+                    <div className={styles.player_name}>{player.data.summonerName}</div>
+                    <div
+                        className={styles.card_body}
+                        style={{ backgroundImage: setBackgroundImage(player.champion.name) }}
+                    >
+                        <div></div>
+                        <div
+                            className={`${styles.summoner_icons} ${
+                                player.data.teamId == 100 ? styles.blue_gradient : styles.red_gradient
+                            }`}
+                        >
+                            <img src={setSummonerSpellIcon(player.summonerSpell_1)} alt="summonerSpellIcon1" />
+                            <img src={setSummonerSpellIcon(player.summonerSpell_2)} alt="summonerSpellIcon2" />
+                        </div>
+                    </div>
+                </div>
                 <div
-                    className={`${styles.summoner_icons} ${
-                        player.data.teamId == 100 ? styles.blue_gradient : styles.red_gradient
+                    className={`${styles.flip_card_back} ${
+                        player.data.teamId == 100 ? styles.blue_back_card : styles.red_back_card
                     }`}
                 >
-                    <img src={setSummonerSpellIcon(player.summonerSpell_1)} alt="summonerSpellIcon1" />
-                    <img src={setSummonerSpellIcon(player.summonerSpell_2)} alt="summonerSpellIcon2" />
+                    <div className={styles.card_back_content}>
+                        <h1>Match History</h1>
+                    </div>
                 </div>
             </div>
         </div>
