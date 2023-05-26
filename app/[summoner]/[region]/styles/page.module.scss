@@ -1,18 +1,6 @@
-.layout {
-    background-image: url("../../../assets/bg1.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
-}
-
 .summoner_match {
     display: flex;
     justify-content: center;
-    height: 100vh;
-}
-
-.match_info {
-    width: 900px;
 }
 
 .general_info {
@@ -20,7 +8,7 @@
     justify-content: space-between;
     align-items: center;
     color: white;
-    padding: 20px 0;
+    padding: 0 0 20px;
     height: 60px;
 }
 

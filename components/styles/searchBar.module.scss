@@ -1,0 +1,49 @@
+@import "../../app/styles/variables.scss";
+
+.container {
+    display: flex;
+}
+
+.search_bar_container {
+    position: relative;
+    width: 250px;
+}
+
+.search_bar {
+    height: 30px;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 5px 0 0 5px;
+    padding: 5px 10px;
+
+    &::-webkit-search-cancel-button {
+        display: none;
+    }
+    
+}
+
+.search_button {
+    position: absolute;
+    right: 0%;
+    top: 10%;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+
+    img {
+        filter: invert(58%) sepia(97%) saturate(8%) hue-rotate(330deg) brightness(97%) contrast(89%);
+    }
+}
+
+.region_select {
+    border: none;
+    outline: none;
+    border-radius: 0 5px 5px 0 ;
+    font-family: 'Friz Quadrata';
+    text-align: center;
+}
+
+.region_select::-ms-expand {
+    display: none;
+}

@@ -1,0 +1,12 @@
+.layout {
+    background-image: url("../../../../assets/bg1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 900px 1fr;
+}
+
+.center_frame {
+    margin: 10px 0;
+}

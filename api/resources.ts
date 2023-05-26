@@ -1,4 +1,4 @@
-import { ChampionResponse, CurrentGame, SummonerSpells } from "@/utils/interfaces";
+import { ChampionResponse, CurrentGame, Match, Summoner, SummonerSpells } from "@/utils/interfaces";
 import { Region } from "@/utils/regions";
 
 export async function request(url: string, method: string): Promise<Response> {
@@ -11,13 +11,27 @@ export async function request(url: string, method: string): Promise<Response> {
     return res;
 }
 
-export async function getSummoner(summoner: string, region: Region) {
+export async function getSummoner(summoner: string, region: Region): Promise<Summoner> {
     const res = await request(region.url + `/lol/summoner/v4/summoners/by-name/${summoner}`, "GET");
     return res.json();
 }
 
-export async function getMatch(id: string, region: Region): Promise<CurrentGame> {
+export async function getMatchHistory(summoner: string, region: Region): Promise<string[]> {
+    const { puuid } = await getSummoner(summoner, region);
+    const res = await request(
+        `https://${region.region}.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids`,
+        "GET"
+    );
+    return res.json();
+}
+
+export async function getCurrentMatch(id: string, region: Region): Promise<CurrentGame> {
     const res = await request(region.url + `/lol/spectator/v4/active-games/by-summoner/${id}`, "GET");
+    return res.json();
+}
+
+export async function getMatch(matchId: string, region: Region): Promise<Match> {
+    const res = await request(`https://${region.region}.api.riotgames.com/lol/match/v5/matches/${matchId}`, "GET");
     return res.json();
 }
 

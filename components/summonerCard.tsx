@@ -1,13 +1,17 @@
 "use client";
 
-import { Champion, Player } from "@/utils/interfaces";
+import { Champion, Match, Player } from "@/utils/interfaces";
 import styles from "./styles/summonerCard.module.scss";
 import { useState } from "react";
+import MatchCard from "./matchCard";
+import { Region } from "@/utils/regions";
 
 interface SummonerCardProps {
     player: {
         data: Player;
         champion: Champion;
+        matchHistory: Match[];
+        region: Region;
         summonerSpell_1: string;
         summonerSpell_2: string;
     };
@@ -66,6 +70,9 @@ function SummonerCard({ player }: SummonerCardProps) {
                 >
                     <div className={styles.card_back_content}>
                         <h1>Match History</h1>
+                        {player.matchHistory.map((match) => (
+                            <MatchCard match={match} />
+                        ))}
                     </div>
                 </div>
             </div>

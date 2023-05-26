@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./error.module.scss";
+import styles from "./styles/error.module.scss";
 import { useRouter } from "next/navigation";
 
 function Error() {

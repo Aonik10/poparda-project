@@ -1,23 +1,30 @@
-import { getChampionsList, getMatch, getSummoner, getSummonerSpells } from "@/api/resources";
+import {
+    getChampionsList,
+    getCurrentMatch,
+    getMatch,
+    getMatchHistory,
+    getSummoner,
+    getSummonerSpells,
+} from "@/api/resources";
 import BannedChampionsContainer from "@/components/bannedChampions";
 import SummonerCard from "@/components/summonerCard";
-import { regions } from "@/utils/regions";
-import styles from "./page.module.scss";
+import { Region, regions } from "@/utils/regions";
+import styles from "./styles/page.module.scss";
 
-interface DataType {
+interface ParamsType {
     params: {
         summoner: string;
         region: string;
     };
 }
 
-async function SummonerMatch({ params }: DataType) {
+async function SummonerMatch({ params }: ParamsType) {
     const { summoner, region } = params;
     const championList = new Map(Object.values((await getChampionsList()).data).map((c) => [parseInt(c.key), c]));
     const summonerSpellList = new Map(Object.values((await getSummonerSpells()).data).map((s) => [parseInt(s.key), s]));
     const regionData = regions[region];
     const { id } = await getSummoner(summoner, regionData);
-    const { gameMode, bannedChampions, participants } = await getMatch(id, regionData);
+    const { gameMode, bannedChampions, participants } = await getCurrentMatch(id, regionData);
 
     function getTeamBannedChampions(teamId: number) {
         return bannedChampions
@@ -33,12 +40,19 @@ async function SummonerMatch({ params }: DataType) {
     function buildPlayers(teamId: number) {
         return participants
             .filter((p) => p.teamId == teamId)
-            .map((p) => {
+            .map(async (p) => {
                 const champ = championList.get(p.championId);
                 if (champ == undefined) throw new Error("Champion not found");
+
+                const matchHistoryIds = await getMatchHistory(p.summonerName, regionData);
+
                 const player = {
                     data: p,
                     champion: champ,
+                    matchHistory: await Promise.all(
+                        matchHistoryIds.slice(0, 4).map((match) => getMatch(match, regionData))
+                    ),
+                    region: regionData,
                     summonerSpell_1: summonerSpellList.get(p.spell1Id)?.id ?? "SummonerFlash",
                     summonerSpell_2: summonerSpellList.get(p.spell2Id)?.id ?? "SummonerFlash",
                 };
@@ -48,8 +62,8 @@ async function SummonerMatch({ params }: DataType) {
 
     const blueTeamBans = getTeamBannedChampions(100);
     const redTeamBans = getTeamBannedChampions(200);
-    const blueTeam = buildPlayers(100);
-    const redTeam = buildPlayers(200);
+    const blueTeam = await Promise.all(buildPlayers(100));
+    const redTeam = await Promise.all(buildPlayers(200));
 
     return (
         <div className={styles.summoner_match}>
