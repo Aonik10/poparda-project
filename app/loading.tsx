@@ -1,7 +1,15 @@
-import styles from "./page.module.scss";
+import styles from "./styles/loading.module.scss";
 
 function Loading() {
-    return <div className={styles.layout}>loading...</div>;
+    return (
+        <div className={styles.loading}>
+            <div className={styles.lds}>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    );
 }
 
 export default Loading;

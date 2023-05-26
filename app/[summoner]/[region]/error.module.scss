@@ -1,0 +1,37 @@
+@import "../../styles/variables.scss";
+
+.error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    color: white;
+}
+
+.bg_image {
+    width: 400px;
+    height: 400px;
+    background-image: url("../../../assets/error.webp");
+    background-size: cover;
+};
+
+.error_text {
+    font-size: 22px;
+}
+
+.back_btn {
+    margin-top: 8px;
+    padding: 8px 12px;
+    font-size: 18px;
+    font-family: 'Friz Quadrata';
+    border: none;
+    background-color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 300ms;
+
+    &:hover {
+        background-color: $soft-blue;
+    }
+}

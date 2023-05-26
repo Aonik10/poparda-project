@@ -25,6 +25,8 @@ function SummonerCard({ player }: SummonerCardProps) {
     function setBackgroundImage(championName: string): string {
         let parsedName = capitalizeName(championName.replaceAll(" ", "").replaceAll("'", ""));
         if (parsedName == "Ksante") parsedName = "KSante";
+        if (parsedName == "Missfortune") parsedName = "MissFortune";
+        if (parsedName == "Masteryi") parsedName = "MasterYi";
         return `url("http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${parsedName}_0.jpg")`;
     }
 

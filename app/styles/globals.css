@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Friz Quadrata';
-  src: url('../fonts/Friz Quadrata Regular.ttf') format('truetype');
+  src: url('../../fonts/Friz Quadrata Regular.ttf') format('truetype');
   /* Add additional src declarations for different font formats if necessary */
   font-weight: normal;
   font-style: normal;

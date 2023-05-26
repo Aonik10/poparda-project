@@ -3,7 +3,7 @@
 import { regions } from "@/utils/regions";
 import { useState } from "react";
 import Link from "next/link";
-import styles from "./page.module.scss";
+import styles from "./styles/page.module.scss";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
