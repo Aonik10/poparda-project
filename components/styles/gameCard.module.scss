@@ -1,0 +1,60 @@
+@import '../../app/styles/variables.scss';
+
+.card_title {
+    color: black;
+    font-weight: 700;
+    text-align: center;
+    width: 330px;
+    background-color: $terciary-gold;
+    border-radius: 4px 4px 0 0;
+}
+
+.game_card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: $terciary-gold;
+    font-weight: 400;
+    padding: 15px;
+    background-color: $dark-blue;
+}
+
+.team {
+    display: flex;
+    flex-direction: column;
+
+    img {
+        margin: 4px 6px;
+        width: 40px;
+    }
+}
+
+.player {
+    text-decoration: inherit;
+    color: inherit;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.red_player {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 150px;
+}
+
+.blue_player {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 150px;
+}
+
+.summoner_name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

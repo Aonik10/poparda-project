@@ -1,65 +1,28 @@
-"use client";
-
-import { regions } from "@/utils/regions";
-import { useState } from "react";
-import Link from "next/link";
+import { getChampionsList, getFeaturedGames } from "@/api/resources";
+import GameCard from "@/components/gameCard";
+import SearchContainer from "./searchContainer";
 import styles from "./styles/page.module.scss";
-import { useRouter } from "next/navigation";
 
-export default function Home() {
-    const router = useRouter();
-    const [currentRegion, setCurrentRegion] = useState("LAS");
-    const [summoner, setSummoner] = useState("");
-
-    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSummoner(e.target.value);
-    };
-
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
-        //router.push(`/${summoner}/${currentRegion}`);
-        return false;
-    };
-
-    const handleKeyDown = (e: any) => {
-        if (e.code == "Enter") router.push(`/${summoner}/${currentRegion}`);
-    };
+export default async function Home() {
+    const featuredGames = await getFeaturedGames("LAS");
+    const championList = new Map(Object.values((await getChampionsList()).data).map((c) => [parseInt(c.key), c]));
 
     return (
-        <div className={styles.home}>
-            <div className={styles.title}>PROJECT POPARDA</div>
-            <form className={styles.container} onSubmit={handleSubmit} onKeyDown={handleKeyDown} tabIndex={0}>
-                <div className={styles.search}>
-                    <label className={styles.search_label} htmlFor="summoner-search">
-                        POPARDA'S enemy name
-                    </label>
-                    <input
-                        className={styles.summoner_search}
-                        type="search"
-                        id="summoner-search"
-                        placeholder="Summoner Name"
-                        onChange={handleSearch}
-                    />
+        <section>
+            <section className={styles.home_top}>
+                <div className={styles.title}>PROJECT POPARDA</div>
+                <SearchContainer />
+            </section>
+            <section className={styles.home_bottom}>
+                <div>
+                    <h1 className={styles.featured_title}>Featured Games</h1>
+                    <div className={styles.featured_games}>
+                        {featuredGames.gameList.map((game) => (
+                            <GameCard game={game} championList={championList} />
+                        ))}
+                    </div>
                 </div>
-                <div className={styles.regions}>
-                    {Object.keys(regions).map((region) => (
-                        <div
-                            className={`${styles.region_fragment} ${
-                                currentRegion == region ? styles.active_region : ""
-                            }`}
-                            key={region}
-                            onClick={() => setCurrentRegion(region)}
-                        >
-                            {region}
-                        </div>
-                    ))}
-                </div>
-                <div className={styles.find_summoner}>
-                    <Link href={`/${summoner}/${currentRegion}`} type="submit" className={styles.link}>
-                        Find summoner
-                    </Link>
-                </div>
-            </form>
-        </div>
+            </section>
+        </section>
     );
 }

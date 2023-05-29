@@ -1,0 +1,78 @@
+@import './variables.scss';
+
+.container {
+	width: 600px;
+	padding: 30px;
+	background-color: $dark-blue;
+	border-radius: 5px;
+	box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.4);
+	z-index: 1;
+}
+
+.search_label {
+	color: $terciary-gold;
+}
+
+.summoner_search {
+	width: 100%;
+	height: 40px;
+	border-radius: 2px;
+	padding: 10px;
+	margin: 5px 0;
+	border: 1px solid $dark-blue;
+	outline-style: none;
+}
+
+.regions {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	width: 100%;
+	
+}
+
+.region_fragment {
+    padding: 8px;
+    background-color: $primary-blue;
+    width: 38px;
+    color: $terciary-gold;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    margin: 1px;
+
+    &:hover {
+        background-color: $secondary-blue;
+    }
+}
+
+.active_region {
+	background-color: $terciary-blue;
+	color: black;
+}
+
+.link {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+.find_summoner {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+
+	a {
+		background-color: $terciary-gold;
+		border: 1px solid grey;
+		font-size: 18px;
+		font-family: 'Friz Quadrata';
+		border-radius: 5px;
+		margin-top: 15px;
+		padding: 5px;
+		width: 50%;
+		cursor: pointer;
+		text-align: center;
+	}
+}

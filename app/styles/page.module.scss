@@ -1,94 +1,46 @@
 @import './variables.scss';
 
-.home {
+.home_top {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	height: 100vh;
-	background-image: url("../../assets/poparda.jpg");
-	background-position: center;
-	background-size: cover;
+	height: 50vh;
+	background-image: url("../../assets/bg2.jpg");
+	background-repeat: no-repeat;
+	background-attachment:scroll;
+	background-position: center; 
 }
 
 .title {
-	margin: 50px 0 250px 0;
+	margin: 50px 0 200px 0;
 	font-size: 70px;
 	font-weight: 700;
 	color: white;
 	text-shadow: -5px 5px black;
 }
 
-.container {
-	width: 600px;
-	padding: 30px;
-	background-color: $primary-color;
-	border-radius: 20px;
-}
-
-.search_label {
-	color: white;
-}
-
-.summoner_search {
-	width: 100%;
-	height: 40px;
-	border-radius: 15px;
-	padding: 10px;
-	margin: 5px 0;
-	border: 1px solid $primary-color;
-	outline-color: $primary-color;
-}
-
-.regions {
+.home_bottom {
 	display: flex;
 	justify-content: center;
-	flex-wrap: wrap;
+	background-color: $dark-lightblue;
+	height: 100%;
+}
+
+.featured_title {
+	color: $terciary-gold;
+	font-size: 30px;
+	margin: 140px 0 0 0;
+}
+
+.featured_games {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 310px;
+	justify-items: center;
 	width: 100%;
-	
-}
+	padding: 20px 0;
 
-.region_fragment {
-    padding: 8px;
-    background-color: $primary-blue;
-    width: 38px;
-    color: white;
-    border-radius: 5px;
-    font-size: 14px;
-    text-align: center;
-    cursor: pointer;
-    margin: 1px;
-
-    &:hover {
-        background-color: $secondary-blue;
-    }
-}
-
-.active_region {
-	background-color: $terciary-blue;
-	color: black;
-}
-
-.link {
-    text-decoration: inherit;
-    color: inherit;
-}
-
-.find_summoner {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-
-	a {
-		background-color: white;
-		border: 1px solid grey;
-		font-size: 18px;
-		font-family: 'Friz Quadrata';
-		border-radius: 5px;
-		margin-top: 15px;
-		padding: 5px;
-		width: 50%;
-		cursor: pointer;
-		text-align: center;
+	& > div {
+		margin-right: 10px ;
 	}
 }

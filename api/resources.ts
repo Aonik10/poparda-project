@@ -1,11 +1,22 @@
-import { ChampionResponse, CurrentGame, Match, Summoner, SummonerSpells } from "@/utils/interfaces";
-import { Region } from "@/utils/regions";
+import {
+    Champion,
+    ChampionResponse,
+    CurrentGame,
+    FeaturedGames,
+    Match,
+    Summoner,
+    SummonerSpells,
+} from "@/utils/interfaces";
+import { regions, Region } from "@/utils/regions";
 
 export async function request(url: string, method: string): Promise<Response> {
     const res = await fetch(url, {
         method: method,
         headers: {
             "X-Riot-Token": process.env.API_KEY,
+        },
+        next: {
+            revalidate: 10,
         },
     });
     return res;
@@ -51,4 +62,13 @@ export async function getChampionPortrait(championName: string): Promise<any> {
         "GET"
     );
     return res.json();
+}
+
+export async function getFeaturedGames(currentRegion: string): Promise<FeaturedGames> {
+    const res = await request(regions[currentRegion].url + "/lol/spectator/v4/featured-games", "GET");
+    return res.json();
+}
+
+export function setChampionPortrait(champion: Champion) {
+    return `http://ddragon.leagueoflegends.com/cdn/13.10.1/img/champion/${champion.image.full}`;
 }

@@ -143,6 +143,11 @@ export interface ChampionResponse {
     };
 }
 
+export interface FeaturedGames {
+    gameList: CurrentGame[];
+    clientRefreshInterval: number;
+}
+
 export interface Match {
     metadata: {
         dataVersion: string;

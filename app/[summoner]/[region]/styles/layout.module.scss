@@ -1,3 +1,5 @@
+@import "../../../styles/variables.scss";
+
 .layout {
     background-image: url("../../../../assets/bg1.jpg");
     background-size: cover;
@@ -9,4 +11,16 @@
 
 .center_frame {
     margin: 10px 0;
+}
+
+.search_bar {
+    display: flex;
+    align-items: center;
+    
+    
+    a {
+        margin-right: 10px;
+        text-decoration: inherit;
+        color: $primary-gold;
+    }
 }

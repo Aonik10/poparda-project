@@ -49,9 +49,10 @@ async function SummonerMatch({ params }: ParamsType) {
                 const player = {
                     data: p,
                     champion: champ,
-                    matchHistory: await Promise.all(
-                        matchHistoryIds.slice(0, 4).map((match) => getMatch(match, regionData))
-                    ),
+                    // matchHistory: await Promise.all(
+                    //     matchHistoryIds.slice(0, 4).map((match) => getMatch(match, regionData))
+                    // ),
+                    matchHistory: matchHistoryIds.slice(0, 10),
                     region: regionData,
                     summonerSpell_1: summonerSpellList.get(p.spell1Id)?.id ?? "SummonerFlash",
                     summonerSpell_2: summonerSpellList.get(p.spell2Id)?.id ?? "SummonerFlash",

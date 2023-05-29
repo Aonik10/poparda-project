@@ -10,7 +10,8 @@ interface SummonerCardProps {
     player: {
         data: Player;
         champion: Champion;
-        matchHistory: Match[];
+        //matchHistory: Match[];
+        matchHistory: string[];
         region: Region;
         summonerSpell_1: string;
         summonerSpell_2: string;
@@ -27,10 +28,7 @@ function SummonerCard({ player }: SummonerCardProps) {
     }
 
     function setBackgroundImage(championName: string): string {
-        let parsedName = capitalizeName(championName.replaceAll(" ", "").replaceAll("'", ""));
-        if (parsedName == "Ksante") parsedName = "KSante";
-        if (parsedName == "Missfortune") parsedName = "MissFortune";
-        if (parsedName == "Masteryi") parsedName = "MasterYi";
+        let parsedName = championName.replaceAll(" ", "").replaceAll("'", "");
         return `url("http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${parsedName}_0.jpg")`;
     }
 
@@ -50,9 +48,8 @@ function SummonerCard({ player }: SummonerCardProps) {
                     <div className={styles.player_name}>{player.data.summonerName}</div>
                     <div
                         className={styles.card_body}
-                        style={{ backgroundImage: setBackgroundImage(player.champion.name) }}
+                        style={{ backgroundImage: setBackgroundImage(player.champion.id) }}
                     >
-                        <div></div>
                         <div
                             className={`${styles.summoner_icons} ${
                                 player.data.teamId == 100 ? styles.blue_gradient : styles.red_gradient

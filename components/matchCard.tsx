@@ -1,12 +1,12 @@
 import { Match } from "@/utils/interfaces";
 
 interface MatchProps {
-    match: Match;
+    //match: Match;
+    match: string;
 }
 
 function MatchCard({ match }: MatchProps) {
-    console.log(match);
-    return <div>{match.info.teams[0].win ? "Victory" : "Defeat"}</div>;
+    return <div>{match}</div>;
 }
 
 export default MatchCard;

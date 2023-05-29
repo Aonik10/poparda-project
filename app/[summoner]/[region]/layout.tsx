@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./styles/layout.module.scss";
 import SearchBar from "@/components/searchBar";
 
@@ -15,7 +16,11 @@ export default function DashboardLayout({ children, params }: DataType) {
         <div className={styles.layout}>
             <div className={styles.left_frame}></div>
             <div className={styles.center_frame}>
-                <SearchBar summoner={summoner} region={region} />
+                <div className={styles.search_bar}>
+                    <Link href="/">HOME</Link>
+                    <SearchBar summoner={summoner} region={region} />
+                </div>
+
                 {children}
             </div>
             <div className={styles.right_frame}></div>
