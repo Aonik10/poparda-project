@@ -5,6 +5,7 @@ import styles from "./styles/summonerCard.module.scss";
 import { useState } from "react";
 import { Region } from "@/utils/regions";
 import TipCard from "./tipCard";
+import Image from "next/image";
 
 interface SummonerCardProps {
     player: {
@@ -20,11 +21,6 @@ interface SummonerCardProps {
 function SummonerCard({ player }: SummonerCardProps) {
     const [active, setActive] = useState(false);
 
-    const handleClick = (e: any) => {
-        console.log(e);
-        if (e.detail === 2) setActive(!active);
-    };
-
     function setBackgroundImage(championName: string): string {
         let parsedName = championName.replaceAll(" ", "").replaceAll("'", "");
         return `url("http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${parsedName}_0.jpg")`;
@@ -39,10 +35,9 @@ function SummonerCard({ player }: SummonerCardProps) {
             className={`${styles.summoner_card} ${styles.flip_card} ${
                 active ? styles.flip_card_active : styles.flip_card_inactive
             }`}
-            onClick={handleClick}
         >
             <div className={styles.flip_card_inner}>
-                <div className={styles.flip_card_front}>
+                <div className={styles.flip_card_front} onClick={() => setActive(!active)}>
                     <div className={styles.player_name}>{player.data.summonerName}</div>
                     <div
                         className={styles.card_body}
@@ -65,6 +60,9 @@ function SummonerCard({ player }: SummonerCardProps) {
                 >
                     <div className={styles.card_back_content}>
                         <TipCard allyTips={player.champion.allytips} enemyTips={player.champion.enemytips} />
+                        <button className={styles.flip_back_btn} onClick={() => setActive(!active)}>
+                            <Image width={30} height={30} src="/arrow.svg" alt="arrow" />
+                        </button>
                     </div>
                 </div>
             </div>

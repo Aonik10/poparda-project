@@ -29,3 +29,9 @@ $terciary-gold: hsla(40°, 50%, 88%, 1);
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+@mixin resetBtn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}

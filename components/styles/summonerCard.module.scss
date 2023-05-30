@@ -17,11 +17,12 @@
 
 .flip_card_inactive:hover .flip_card_inner {
     transform: rotateY(-20deg);
+    cursor: pointer;
 }
 
-.flip_card_active:hover .flip_card_inner {
-    transform: rotateY(200deg);
-}
+// .flip_card_active:hover .flip_card_inner {
+//     transform: rotateY(200deg);
+// }
 
 .flip_card_active .flip_card_inner {
     transform: rotateY(180deg);
@@ -52,7 +53,6 @@
 .summoner_card {
     border-radius: 5px;
     margin: 2px;
-    cursor: pointer;
 }
 
 .player_name {
@@ -100,8 +100,17 @@
 }
 
 .card_back_content {
-    
+    text-align: start;
     h1 {
         font-size: 14px;
     }
+}
+
+.flip_back_btn {
+    @include resetBtn;
+
+    img {
+        filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(81deg) brightness(101%) contrast(102%);
+    }
+    
 }

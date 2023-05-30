@@ -39,7 +39,7 @@ function SearchBar({ summoner, region }: DataType) {
                     onChange={handleChange}
                 />
                 <button className={styles.search_button} type="submit">
-                    <Image width={20} height={20} src="/search.svg" alt="asd" />
+                    <Image width={20} height={20} src="/search.svg" alt="search" />
                 </button>
             </div>
             <select className={styles.region_select} name="region" onChange={handleChange}>
