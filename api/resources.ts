@@ -1,5 +1,6 @@
 import {
     Champion,
+    ChampionDetails,
     ChampionResponse,
     CurrentGame,
     FeaturedGames,
@@ -56,7 +57,7 @@ export async function getSummonerSpells(): Promise<SummonerSpells> {
     return res.json();
 }
 
-export async function getChampionPortrait(championName: string): Promise<any> {
+export async function getChampionDetails(championName: string): Promise<ChampionDetails> {
     const res = await request(
         `http://ddragon.leagueoflegends.com/cdn/13.10.1/data/en_US/champion/${championName}.json`,
         "GET"

@@ -31,6 +31,46 @@ export interface Player {
     };
 }
 
+export interface DDragonImage {
+    full: string;
+    sprite: string;
+    group: string;
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+}
+
+export interface DDragonInfo {
+    attack: number;
+    defense: number;
+    magic: number;
+    difficulty: number;
+}
+
+export interface DDragonStats {
+    hp: number;
+    hpperlevel: number;
+    mp: number;
+    mpperlevel: number;
+    movespeed: number;
+    armor: number;
+    armorperlevel: number;
+    spellblock: number;
+    spellblockperlevel: number;
+    attackrange: number;
+    hpregen: number;
+    hpregenperlevel: number;
+    mpregen: number;
+    mpregenperlevel: number;
+    crit: number;
+    critperlevel: number;
+    attackdamage: number;
+    attackdamageperlevel: number;
+    attackspeedperlevel: number;
+    attackspeed: number;
+}
+
 export interface Champion {
     version: string;
     id: string;
@@ -38,44 +78,72 @@ export interface Champion {
     name: string;
     title: string;
     blurb: string;
-    info: {
-        attack: number;
-        defense: number;
-        magic: number;
-        difficulty: number;
-    };
-    image: {
-        full: string;
-        sprite: string;
-        group: string;
-        x: number;
-        y: number;
-        w: number;
-        h: number;
-    };
+    info: DDragonInfo;
+    image: DDragonImage;
     tags: string[];
     partype: string;
-    stats: {
-        hp: number;
-        hpperlevel: number;
-        mp: number;
-        mpperlevel: number;
-        movespeed: number;
-        armor: number;
-        armorperlevel: number;
-        spellblock: number;
-        spellblockperlevel: number;
-        attackrange: number;
-        hpregen: number;
-        hpregenperlevel: number;
-        mpregen: number;
-        mpregenperlevel: number;
-        crit: number;
-        critperlevel: number;
-        attackdamage: number;
-        attackdamageperlevel: number;
-        attackspeedperlevel: number;
-        attackspeed: number;
+    stats: DDragonStats;
+}
+
+export interface ChampionDetailsData {
+    id: string;
+    key: string;
+    name: string;
+    title: string;
+    image: DDragonImage;
+    skins: {
+        id: string;
+        num: number;
+        name: string;
+        chromas: boolean;
+    }[];
+    lore: string;
+    blurb: string;
+    allytips: string[];
+    enemytips: string[];
+    tags: string[];
+    partype: string;
+    info: DDragonInfo;
+    stats: DDragonStats;
+    spells: {
+        id: string;
+        name: string;
+        description: string;
+        tooltip: string;
+        leveltip: {
+            label: string[];
+            effect: string[];
+        };
+        maxrank: number;
+        cooldown: number[];
+        cooldownBurn: string;
+        cost: number[];
+        costBurn: string;
+        datavalues: {};
+        effect: (null | number[])[];
+        effectBurn: (null | string[])[];
+        vars: any[];
+        costType: string;
+        maxammo: string;
+        range: number[];
+        rangeBurn: string;
+        image: DDragonImage;
+        resource: string;
+    }[];
+    passive: {
+        name: string;
+        description: string;
+        image: DDragonImage;
+    };
+    recommended: any[];
+}
+
+export interface ChampionDetails {
+    type: string;
+    format: string;
+    version: string;
+    data: {
+        [key: string]: ChampionDetailsData;
     };
 }
 

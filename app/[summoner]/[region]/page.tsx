@@ -1,4 +1,5 @@
 import {
+    getChampionDetails,
     getChampionsList,
     getCurrentMatch,
     getMatch,
@@ -45,10 +46,11 @@ async function SummonerMatch({ params }: ParamsType) {
                 if (champ == undefined) throw new Error("Champion not found");
 
                 const matchHistoryIds = await getMatchHistory(p.summonerName, regionData);
+                const championDetails = await getChampionDetails(champ.id);
 
                 const player = {
                     data: p,
-                    champion: champ,
+                    champion: championDetails.data[champ.id],
                     // matchHistory: await Promise.all(
                     //     matchHistoryIds.slice(0, 4).map((match) => getMatch(match, regionData))
                     // ),

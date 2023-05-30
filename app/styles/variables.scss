@@ -15,3 +15,17 @@ $primary-red: hsla(360°, 100%, 67%, 1);
 $primary-gold: hsla(41°, 56%, 51%, 1);
 $secondary-gold: hsla(40°, 45%, 61%, 1);
 $terciary-gold: hsla(40°, 50%, 88%, 1);
+
+@mixin formatTextOverflow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin formatTextOverflowMultipleLines($lines) {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

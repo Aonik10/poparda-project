@@ -1,16 +1,15 @@
 "use client";
 
-import { Champion, Match, Player } from "@/utils/interfaces";
+import { ChampionDetailsData, Player } from "@/utils/interfaces";
 import styles from "./styles/summonerCard.module.scss";
 import { useState } from "react";
-import MatchCard from "./matchCard";
 import { Region } from "@/utils/regions";
+import TipCard from "./tipCard";
 
 interface SummonerCardProps {
     player: {
         data: Player;
-        champion: Champion;
-        //matchHistory: Match[];
+        champion: ChampionDetailsData;
         matchHistory: string[];
         region: Region;
         summonerSpell_1: string;
@@ -21,11 +20,10 @@ interface SummonerCardProps {
 function SummonerCard({ player }: SummonerCardProps) {
     const [active, setActive] = useState(false);
 
-    function capitalizeName(name: string) {
-        const firstLetter = name.substring(0, 1);
-        const nextLetters = name.substring(1).toLowerCase();
-        return firstLetter + nextLetters;
-    }
+    const handleClick = (e: any) => {
+        console.log(e);
+        if (e.detail === 2) setActive(!active);
+    };
 
     function setBackgroundImage(championName: string): string {
         let parsedName = championName.replaceAll(" ", "").replaceAll("'", "");
@@ -41,7 +39,7 @@ function SummonerCard({ player }: SummonerCardProps) {
             className={`${styles.summoner_card} ${styles.flip_card} ${
                 active ? styles.flip_card_active : styles.flip_card_inactive
             }`}
-            onClick={() => setActive(!active)}
+            onClick={handleClick}
         >
             <div className={styles.flip_card_inner}>
                 <div className={styles.flip_card_front}>
@@ -66,10 +64,7 @@ function SummonerCard({ player }: SummonerCardProps) {
                     }`}
                 >
                     <div className={styles.card_back_content}>
-                        <h1>Match History</h1>
-                        {player.matchHistory.map((match) => (
-                            <MatchCard match={match} />
-                        ))}
+                        <TipCard allyTips={player.champion.allytips} enemyTips={player.champion.enemytips} />
                     </div>
                 </div>
             </div>
